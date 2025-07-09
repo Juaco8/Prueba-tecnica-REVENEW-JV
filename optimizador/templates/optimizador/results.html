@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Resultados de la Optimización</title>
+</head>
+<body>
+  <h1>Solución Óptima</h1>
+
+  <p>
+    Producto A (x<sub>A</sub>): <strong>{{ x_A_opt|floatformat:2 }} unidades</strong><br>
+    Producto B (x<sub>B</sub>): <strong>{{ x_B_opt|floatformat:2 }} unidades</strong><br>
+    Ingreso máximo (Z): <strong>${{ revenue_opt|floatformat:2 }}</strong>
+  </p>
+
+  <h2>Región factible</h2>
+  <img
+    src="data:image/png;base64,{{ plt_feasible_region }}"
+    alt="Gráfico de la región factible con la solución óptima"
+    style="max-width: 100%; height: auto;"
+  />
+  
+  <h2>Unidades óptimas</h2>
+  <img
+    src="data:image/png;base64,{{ plt_optimal_units }}"
+    alt="Gráfico de la cantidad de unidades óptimas a vender"
+    style="max-width: 100%; height: auto;"
+  />
+
+  <p>
+    <a href="{% url 'url_apply_model' %}">Cargar otro CSV</a>
+    <a href="{% url 'url_edit_params' %}">Editar/Agregar restricciones</a>
+  </p>
+</body>
+</html>

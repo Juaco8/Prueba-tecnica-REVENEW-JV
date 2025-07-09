@@ -1,0 +1,53 @@
+<!-- templates/optimizador/edit_params.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar parámetros</title>
+    {% load static %}
+</head>
+<body>
+
+    <h2>Editar parámetros del modelo</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <!-- Precios -->
+        <fieldset>
+            <legend>Precios</legend>
+            <p>{{ form.P_A.label }}: {{ form.P_A }} Precio actual: {{ params.P_A }}</p>
+            <p>{{ form.P_B.label }}: {{ form.P_B }} Precio actual: {{ params.P_B }}</p>
+        </fieldset>
+
+        <!-- Volver a los datos originales -->
+        <fieldset>
+            <legend>Opciones</legend>
+            <p>{{ form.reset_to_base }} {{ form.reset_to_base.label }}</p>
+        </fieldset>
+
+        <!-- Agregar nueva restricción -->
+        <fieldset>
+            <legend>Agregar nueva restricción</legend>
+            <p>{{ form.T_Ai.label }}: {{ form.T_Ai }}</p>
+            <p>{{ form.T_Bi.label }}: {{ form.T_Bi }}</p>
+            <p>{{ form.T_Mi.label }}: {{ form.T_Mi }}</p>
+            <p>{{ form.add_row }} {{ form.add_row.label }}</p>
+        </fieldset>
+        <fieldset>
+            <legend>Eliminar nueva restricción</legend>
+            <p>{{ form.delete_row_index.label_tag }} {{ form.delete_row_index }}</p>
+        </fieldset>
+
+        <button type="submit">Guardar cambios</button>
+    </form>
+    <h3>Restricciones actuales</h3>
+    <div>
+        {{ restrictions_table|safe }}
+    </div>
+    <br>
+    <a href="{% url 'url_apply_model' %}">← Volver a cargar archivo</a>
+
+</body>
+</html>
